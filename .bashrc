@@ -149,6 +149,16 @@ shopt -s histappend # append, don't overwrite history
 PROMPT_COMMAND='history -a' # save history immediately, rather than on close.
 export HISTIGNORE="ls:ps:history"
 
+# Correct typos when changing directory
+shopt -s cdspell
+
+# Confirm unsafe file operations
+alias cp='/bin/cp -i'
+alias mv='/bin/mv -i'
+alias rm='/bin/rm -i'
+
+# Aliases
+alias open=xdg-open
 
 # ESU
 alias 430='cd ~/Dropbox/esu/cpsc430'
