@@ -1,0 +1,276 @@
+# i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+# Bind meta key as mod
+set $mod Mod4
+
+# font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango: SF Mono 10
+
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start a launcher
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+d exec --no-startup-id rofi -show run -font "inconsolata 14" -theme Arc-Dark
+bindsym $mod+d exec --no-startup-id albert toggle
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+Shift+v split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle global
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s exec --no-startup-id "i3-msg layout stacking; notify-send -t 1000 Stacking"
+bindsym $mod+w exec --no-startup-id "i3-msg layout tabbed; notify-send -t 1000 Tabbed"
+bindsym $mod+e exec --no-startup-id "i3-msg layout toggle split; notify-send -t 1000 Toggle split"
+
+# toggle tiling / floating
+bindsym $mod+Shift+space exec --no-startup-id "i3-msg floating toggle; notify-send -t 1000 Toggle floating"
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace last
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# switch to workspace numpad
+bindsym $mod+KP_1 workspace number $ws1
+bindsym $mod+KP_2 workspace number $ws2
+bindsym $mod+KP_3 workspace number $ws3
+bindsym $mod+KP_4 workspace number $ws4
+bindsym $mod+KP_5 workspace number $ws5
+bindsym $mod+KP_6 workspace number $ws6
+bindsym $mod+KP_7 workspace number $ws7
+bindsym $mod+KP_8 workspace number $ws8
+bindsym $mod+KP_9 workspace number $ws9
+bindsym $mod+KP_0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# move focused container to workspace numpad
+bindsym $mod+Shift+KP_1 move container to workspace number $ws1
+bindsym $mod+Shift+KP_2 move container to workspace number $ws2
+bindsym $mod+Shift+KP_3 move container to workspace number $ws3
+bindsym $mod+Shift+KP_4 move container to workspace number $ws4
+bindsym $mod+Shift+KP_5 move container to workspace number $ws5
+bindsym $mod+Shift+KP_6 move container to workspace number $ws6
+bindsym $mod+Shift+KP_7 move container to workspace number $ws7
+bindsym $mod+Shift+KP_8 move container to workspace number $ws8
+bindsym $mod+Shift+KP_9 move container to workspace number $ws9
+bindsym $mod+Shift+KP_0 move container to workspace number $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppthh
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command py3status -c ~/.config/i3/i3status.conf
+}
+
+
+###############################################################################
+#                                   KEYBINDS 
+###############################################################################
+
+# Rename workspace
+bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
+
+# Map caps lock to meta key
+#exec --no-startup-id xmodmap ~/.config/i3/Xmodmap 
+# TODO: Move this to .xinitrc?
+exec --no-startup-ud setxkbmap -option caps:super
+
+# Screenshots
+bindsym Print exec xfce4-screenshooter
+#bindsym Print exec scrot -e 'mv $f ~/Dropbox/Screenshots'
+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym CXF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Clear notifications hack
+bindsym $mod+c exec pkill notifyd
+
+###############################################################################
+#                                   STARTUP 
+###############################################################################
+
+# --no-startup-id parameter disables startup-notification support for this 
+# particular exec command. With startup-notification, i3 can make sure that a window
+# appears on the workspace on which you used the exec command. Also, it will change
+# the X11 cursor to watch (a clock) while the application is launching. So, if an
+# application is not startup-notification aware (most GTK and Qt using applications
+# seem to be, though), you will end up with a watch cursor for 60 seconds.
+
+# Compositor
+exec --no-startup-id compton --config ~/.config/i3/compton.conf
+
+# Launcher
+exec --no-startup-id albert
+
+# Desktop background
+exec --no-startup-id feh --randomize --bg-scale ~/dropbox/wallpaper
+
+# Dropbox
+exec --no-startup-id dropbox start
+
+# Network manager
+exec --no-startup-id nm-applet
+
+
+###############################################################################
+#                                   APPEARANCE 
+###############################################################################
+
+# No window border
+#for_window [class="^.*"] border pixel 0
+#for_window [title="^.*"] border pixel 0
+
+#No window titles except floating windows
+default_border pixel
+
+
+###############################################################################
+#                                   WINDOWS 
+###############################################################################
+
+for_window [class="^galculator$"] floating enable
+for_window [class="jetbrains-studio" title="^win\d+$"] focus
+
+
+###############################################################################
+#                        WIP: Window to workspace mapping 
+###############################################################################
+
+set $lmon "HDMI2"
+set $rmon "HDMI3"
+workspace $ws1 output $lmon
+workspace $ws6 output $lmon
+
+workspace $ws2 output $rmon
+workspace $ws3 output $rmon
+workspace $ws4 output $rmon
+workspace $ws5 output $rmon
+
+# exec --no-startup-id xrandr --output $lmon --primary --auto --left-of $rmon
+
+assign [class="jetbrains-studio"] $ws1
+assign [class="mattermost"] $ws3
+assign [class="signal"] $ws3
+assign [class="Firefox"] $ws4
+assign [class="clementine"] $ws5
+assign [class="jetbrains-clion"] $ws6
