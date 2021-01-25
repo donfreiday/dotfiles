@@ -251,26 +251,3 @@ default_border pixel
 for_window [class="^galculator$"] floating enable
 for_window [class="jetbrains-studio" title="^win\d+$"] focus
 
-
-###############################################################################
-#                        WIP: Window to workspace mapping 
-###############################################################################
-
-set $lmon "HDMI2"
-set $rmon "HDMI3"
-workspace $ws1 output $lmon
-workspace $ws6 output $lmon
-
-workspace $ws2 output $rmon
-workspace $ws3 output $rmon
-workspace $ws4 output $rmon
-workspace $ws5 output $rmon
-
-# exec --no-startup-id xrandr --output $lmon --primary --auto --left-of $rmon
-
-assign [class="jetbrains-studio"] $ws1
-assign [class="mattermost"] $ws3
-assign [class="signal"] $ws3
-assign [class="Firefox"] $ws4
-assign [class="clementine"] $ws5
-assign [class="jetbrains-clion"] $ws6
