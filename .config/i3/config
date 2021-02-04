@@ -236,7 +236,7 @@ exec --no-startup-id nm-applet
 
 # Notifications
 #exec --no-startup-id dunst
-#exec --no-startup-id dunst
+exec --no-startup-id dunst
 
 
 ###############################################################################
