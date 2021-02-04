@@ -162,3 +162,7 @@ alias le='source ~/dev/scripts/le'
 
 # Bash completion
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
+
+
+# Android platform tools
+export PATH=$PATH:/home/don/Android/Sdk/platform-tools
