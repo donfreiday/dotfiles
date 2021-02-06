@@ -19,8 +19,6 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start a launcher
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-# bindsym $mod+d exec --no-startup-id rofi -show run -font "inconsolata 14" -theme Arc-Dark
 bindsym $mod+d exec --no-startup-id albert toggle
 
 # change focus
@@ -72,10 +70,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
-
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace last
+bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -227,7 +222,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 # seem to be, though), you will end up with a watch cursor for 60 seconds.
 
 # Compositor
-exec --no-startup-id picom
+exec --no-startup-id picom -b
 
 # Launcher
 exec --no-startup-id albert
@@ -241,6 +236,8 @@ exec --no-startup-id dropbox start
 # Network manager
 exec --no-startup-id nm-applet
 
+# Wallpaper
+exec --no-startup-id feh --bg-fill --random /usr/share/backgrounds/archlinux/
 
 ###############################################################################
 #                                   APPEARANCE 
