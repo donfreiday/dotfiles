@@ -162,7 +162,7 @@ mode "resize" {
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppthh
+        bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
@@ -177,7 +177,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command py3status -c ~/.config/i3/i3status.conf
+        status_command i3status -c ~/.config/i3/i3status.conf
 }
 
 
@@ -194,7 +194,7 @@ bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this
 exec --no-startup-ud setxkbmap -option caps:super
 
 # Screenshots
-bindsym Print exec xfce4-screenshooter
+#bindsym Print exec xfce4-screenshooter
 #bindsym Print exec scrot -e 'mv $f ~/Dropbox/Screenshots'
 
 # Player controls
@@ -213,7 +213,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
 
 # Clear notifications hack
-bindsym $mod+c exec pkill notifyd
+# bindsym $mod+c exec pkill notifyd
 
 ###############################################################################
 #                                   STARTUP 
@@ -227,7 +227,7 @@ bindsym $mod+c exec pkill notifyd
 # seem to be, though), you will end up with a watch cursor for 60 seconds.
 
 # Compositor
-exec --no-startup-id compton --config ~/.config/i3/compton.conf
+exec --no-startup-id picom
 
 # Launcher
 exec --no-startup-id albert
@@ -261,26 +261,3 @@ default_border pixel
 for_window [class="^galculator$"] floating enable
 for_window [class="jetbrains-studio" title="^win\d+$"] focus
 
-
-###############################################################################
-#                        WIP: Window to workspace mapping 
-###############################################################################
-
-set $lmon "HDMI2"
-set $rmon "HDMI3"
-workspace $ws1 output $lmon
-workspace $ws6 output $lmon
-
-workspace $ws2 output $rmon
-workspace $ws3 output $rmon
-workspace $ws4 output $rmon
-workspace $ws5 output $rmon
-
-# exec --no-startup-id xrandr --output $lmon --primary --auto --left-of $rmon
-
-assign [class="jetbrains-studio"] $ws1
-assign [class="mattermost"] $ws3
-assign [class="signal"] $ws3
-assign [class="Firefox"] $ws4
-assign [class="clementine"] $ws5
-assign [class="jetbrains-clion"] $ws6
