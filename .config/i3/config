@@ -225,7 +225,7 @@ exec --no-startup-id picom -b
 exec --no-startup-id albert
 
 # Desktop background
-exec --no-startup-id feh --randomize --bg-scale ~/dropbox/wallpaper
+exec --no-startup-id feh --randomize --bg-scale --no-xinerama /usr/share/backgrounds
 
 # Dropbox
 exec --no-startup-id dropbox start
