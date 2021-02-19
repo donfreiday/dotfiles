@@ -56,12 +56,12 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+f fullscreen toggle global
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s exec --no-startup-id "i3-msg layout stacking; notify-send -t 1000 Stacking"
-bindsym $mod+w exec --no-startup-id "i3-msg layout tabbed; notify-send -t 1000 Tabbed"
-bindsym $mod+e exec --no-startup-id "i3-msg layout toggle split; notify-send -t 1000 Toggle split"
+bindsym $mod+s exec --no-startup-id "i3-msg layout stacking"
+bindsym $mod+w exec --no-startup-id "i3-msg layout tabbed"
+bindsym $mod+e exec --no-startup-id "i3-msg layout toggle split"
 
 # toggle tiling / floating
-bindsym $mod+Shift+space exec --no-startup-id "i3-msg floating toggle; notify-send -t 1000 Toggle floating"
+bindsym $mod+Shift+space exec --no-startup-id "i3-msg floating toggle"
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -223,9 +223,6 @@ exec --no-startup-id picom -b
 
 # Launcher
 exec --no-startup-id albert
-
-# Desktop background
-exec --no-startup-id feh --randomize --bg-scale --no-xinerama /usr/share/backgrounds
 
 # Dropbox
 exec --no-startup-id dropbox start
