@@ -180,14 +180,8 @@ bar {
 # Rename workspace
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
 
-# Map caps lock to meta key
-#exec --no-startup-id xmodmap ~/.config/i3/Xmodmap 
-# TODO: Move this to .xinitrc?
-exec --no-startup-ud setxkbmap -option caps:super
-
 # Screenshots
-#bindsym Print exec xfce4-screenshooter
-#bindsym Print exec scrot -e 'mv $f ~/Dropbox/Screenshots'
+bindsym Print exec flameshot gui
 
 # Player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -203,9 +197,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 # Brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
-
-# Clear notifications hack
-# bindsym $mod+c exec pkill notifyd
 
 ###############################################################################
 #                                   STARTUP 

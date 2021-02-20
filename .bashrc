@@ -36,9 +36,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# Caps lock as Super
-setxkbmap -option caps:super
-
 export EDITOR=vim
 
 # To have colors for ls and all grep commands such as grep, egrep and zgrep
