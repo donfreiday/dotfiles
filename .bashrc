@@ -25,42 +25,7 @@ shopt -s checkwinsize
 # Correct typos when changing directory
 shopt -s cdspell
 
-# Git branch name in prompt
-brname () {
-  a=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  if [ -n "$a" ]; then
-    echo " [$a]"
-  else
-    echo ""
-  fi
-}
 
-export COLOR_NC='\e[0m' # No Color
-export COLOR_BLACK='\e[0;30m'
-export COLOR_GRAY='\e[1;30m'
-export COLOR_RED='\e[0;31m'
-export COLOR_LIGHT_RED='\e[1;31m'
-export COLOR_GREEN='\e[0;32m'
-export COLOR_LIGHT_GREEN='\e[1;32m'
-export COLOR_BROWN='\e[0;33m'
-export COLOR_YELLOW='\e[1;33m'
-export COLOR_BLUE='\e[0;34m'
-export COLOR_LIGHT_BLUE='\e[1;34m'
-export COLOR_PURPLE='\e[0;35m'
-export COLOR_LIGHT_PURPLE='\e[1;35m'
-export COLOR_CYAN='\e[0;36m'
-export COLOR_LIGHT_CYAN='\e[1;36m'
-export COLOR_LIGHT_GRAY='\e[0;37m'
-export COLOR_WHITE='\e[1;37m'
-
-
-if [ "$UID" = 0 ]; then
-    PS1="$COLOR_RED\u$COLOR_NC@$COLOR_RED\H$COLOR_NC:$COLOR_CYAN\w$COLOR_NC\\n$COLOR_RED#$COLOR_NC "
-else
-    PS1="$COLOR_PURPLE\u$COLOR_NC@$COLOR_CYAN\H$COLOR_NC:$COLOR_GREEN\w$COLOR_NC$COLOR_CYAN\$(brname)\n$COLOR_GREEN\$$COLOR_NC "
-fi
-
-alias ll='ls -lAh'
 # -R: show ANSI colors correctly; -i: case insensitive search
 LESS="-R -i"
 
@@ -76,9 +41,93 @@ setxkbmap -option caps:super
 
 export EDITOR=vim
 
+# To have colors for ls and all grep commands such as grep, egrep and zgrep
+export CLICOLOR=1
+
+# Color for manpages in less makes manpages a little easier to read
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
 alias dotfiles='/usr/bin/git --git-dir=/home/don/.dotfiles/ --work-tree=/home/don'
-alias ll='ls --color=auto -lAhF'
-alias ls='ls --color=auto'
+alias ll='ls -lAhF'
 
 # Bash completion
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
+
+#######################################################
+# Set the ultimate amazing command prompt
+# Modified from https://gist.github.com/zachbrowne/8bc414c9f30192067831fafebd14255c
+#######################################################
+
+function __setprompt
+{
+	local LIGHTGRAY="\033[0;37m"
+	local WHITE="\033[1;37m"
+	local BLACK="\033[0;30m"
+	local DARKGRAY="\033[1;30m"
+	local RED="\033[0;31m"
+	local LIGHTRED="\033[1;31m"
+	local GREEN="\033[0;32m"
+	local LIGHTGREEN="\033[1;32m"
+	local BROWN="\033[0;33m"
+	local YELLOW="\033[1;33m"
+	local BLUE="\033[0;34m"
+	local LIGHTBLUE="\033[1;34m"
+	local MAGENTA="\033[0;35m"
+	local LIGHTMAGENTA="\033[1;35m"
+	local CYAN="\033[0;36m"
+	local LIGHTCYAN="\033[1;36m"
+	local NOCOLOR="\033[0m"
+	
+	# User
+	PS1="\[${GREEN}\]\u"
+
+	# @
+	PS1+="\[${NOCOLOR}\]@"
+
+	# Host
+	PS1+="\[${LIGHTBLUE}\]\H"
+
+	# :
+	PS1+="\[${NOCOLOR}\]:"
+	
+	# Directory
+	PS1+="\[${LIGHTGREEN}\]\w"
+	
+	# Git branch name
+	brname () {
+  		a=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  		if [ -n "$a" ]; then
+    			echo " [$a]"
+  		else
+    			echo ""
+  		fi
+	}
+
+	PS1+="\[${LIGHTCYAN}\]\$(brname)"
+	
+	PS1+="\n"
+
+	if [[ $EUID -ne 0 ]]; then
+		PS1+="\[${GREEN}\]$" # Normal user
+	else
+		PS1+="\[${RED}\]#" # Root user
+	fi
+
+	PS1+="\[${NOCOLOR}\] "
+
+	# PS2 is used to continue a command using the \ character
+	# PS2="\[${DARKGRAY}\]>\[${NOCOLOR}\] "
+
+	# PS3 is used to enter a number choice in a script
+	# PS3='Please enter a number from above list: '
+
+	# PS4 is used for tracing a script in debug mode
+	# PS4='\[${DARKGRAY}\]+\[${NOCOLOR}\] '
+}
+PROMPT_COMMAND='__setprompt'
