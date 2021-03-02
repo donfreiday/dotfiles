@@ -249,4 +249,5 @@ for_window [class="^galculator$"] floating enable
 # This mostly fixes floating windows for Android Stuio, but it's better to add 
 # suppress.focus.stealing=false
 # to Help -> Custom Properties
-#for_window [class="jetbrains-studio" title="^win\d+$"] focus
+# UPDATE: That doesn't fix suggestions when evaluating expressions :(
+for_window [class="jetbrains-studio" title="^win\d+$"] focus
