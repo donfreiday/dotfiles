@@ -180,6 +180,12 @@ bar {
 # Rename workspace
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
 
+# Move window to named workspace
+bindsym $mod+m exec i3-input -F 'move window workspace "%s"' -P 'Move window to workspace: '
+
+# Show named workspace
+bindsym $mod+g exec i3-input -F 'workspace "%s"' -P 'Show workspace: '
+
 # Screenshots
 bindsym Print exec flameshot gui
 
