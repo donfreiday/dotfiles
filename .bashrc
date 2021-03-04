@@ -51,6 +51,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 alias dotfiles='/usr/bin/git --git-dir=/home/don/.dotfiles/ --work-tree=/home/don'
+alias ls='ls --color=auto'
 alias ll='ls -lAhF'
 
 # Bash completion
