@@ -186,6 +186,9 @@ bindsym $mod+m exec i3-input -F 'move window workspace "%s"' -P 'Move window to 
 # Show named workspace
 bindsym $mod+g exec i3-input -F 'workspace "%s"' -P 'Show workspace: '
 
+# Show chat workspace
+bindsym $mod+c workspace chat
+
 # Screenshots
 bindsym Print exec flameshot gui
 
