@@ -129,3 +129,5 @@ function __setprompt
 	# PS4='\[${DARKGRAY}\]+\[${NOCOLOR}\] '
 }
 PROMPT_COMMAND='__setprompt'
+#setxkbmap -option caps:super
+. "$HOME/.cargo/env"
