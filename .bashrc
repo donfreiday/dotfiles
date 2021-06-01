@@ -129,3 +129,9 @@ function __setprompt
 	# PS4='\[${DARKGRAY}\]+\[${NOCOLOR}\] '
 }
 PROMPT_COMMAND='__setprompt'
+
+# Work
+alias le='. ~/dev/scripts/le'
+setxkbmap -option caps:super
+
+alias todo='cat ~/todo/*'
